@@ -1,0 +1,86 @@
+<div class="header">
+    <a href="/filemanager" id="filemanager">FILEMANAGER</a>
+</div>
+
+<div class="container">
+<div class="container1">
+    <div id="bt1" class="bt1">NOWY FOLDER</div>
+
+    <div id="bt2" class="bt2">NOWY PLIK TEKSTOWY</div>
+
+    <div class="upl">
+        <form enctype="multipart/form-data" method="POST" action="/filemanager">
+                <input type="file" multiple required accept="image/*" name="imageupload">
+                <button type="sumbit">Wyślij pliki</button>
+        </form>
+    </div>
+</div>
+
+<div class="container2" id="container2">
+ 
+</div>
+</div>
+
+{{!-- dialogi --}}
+
+
+<dialog id="nowy_folder">
+    <p>nazwa nowego folderu</p>
+    <form method="dialog">
+        <input type="text" id="fol_val">
+        <submit id="fol_ok">OK</submit>
+        <submit id="fol_cancel">CANCEL</submit>
+    </form>
+</dialog>
+
+<dialog id="nowy_plik">
+    <p>nazwa nowego pliku tekstowego</p>
+    <form method="dialog">
+        <input type="text" id="file_val">
+        <submit id="file_ok">OK</submit>
+        <submit id="file_cancel">CANCEL</submit>
+    </form>
+</dialog>
+
+<script>
+    let dodaj_folder = document.getElementById("bt1");
+    let dodaj_plik = document.getElementById("bt2");
+    let con2 = document.getElementById("container2");
+
+    dodaj_folder.onclick = function () {
+        var flaga = false;
+       const d = document.getElementById("nowy_folder");
+       d.showModal();
+
+        document.getElementById("fol_cancel").onclick = function () {
+            d.close();
+        }
+        document.getElementById("fol_ok").onclick = function () {
+            var wartosc = document.getElementById("fol_val").value
+            console.log(wartosc)
+            d.close();
+            let katalog = document.createElement("div");
+            katalog.style.height = "200px";
+            katalog.style.width = "200px";
+            katalog.style.backgroundColor = "red";
+            katalog.innerText(wartosc)
+            con2.append(katalog)
+        }
+        
+    }
+
+    dodaj_plik.onclick = function () {
+            const d = document.getElementById("nowy_plik");
+            d.showModal();
+
+            document.getElementById("file_cancel").onclick = function () {
+                d.close();
+            }
+            document.getElementById("file_ok").onclick = function () {
+                let wartosc2 = document.getElementById("file_val").value
+                console.log(wartosc2)
+                d.close();
+            }
+        }
+        
+</script>
